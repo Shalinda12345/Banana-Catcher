@@ -10,13 +10,24 @@ if(!isset($_SESSION["user"])){
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Banana Catcher</title>
+    <title>Whack a Mole</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <?php
+    if(isset($_POST["start"])){
+      header("Location: game/index.php");
+    }
+    ?>
     <div>
       <h1>Welcome to Banana Catcher</h1>
-      <a href="logout.php">Logout</a>
+      <form action="index.php" method="post">
+        <input type="submit" value="Start" name="start">
+        <input type="submit" value="Leaderboard" name="leaderboard">
+        <input type="submit" value="Settings" name="settings">
+        <button><a href="logout.php">Logout</a></button>
+      </form>
+      
     </div>
     
   </body>
