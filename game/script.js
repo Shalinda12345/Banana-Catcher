@@ -101,7 +101,6 @@ function setPlant(plantHole) {
     });
 }
 
-<<<<<<< HEAD
 // 🧠 Banana Challenge (with real verification)
 function showBananaChallenge() {
     gamePaused = true;
@@ -161,12 +160,6 @@ function showBananaChallenge() {
         }, 1000);
     }
 });
-
-=======
-function apiCall(){
-    window.location.href = "https://marcconrad.com/uob/banana/index.php";  
-    // Test 
->>>>>>> ba92657b570e1766790423480559c57533e778bb
 }
 
 function gameEnded() {
