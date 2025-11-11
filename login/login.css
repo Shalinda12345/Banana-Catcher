@@ -16,12 +16,28 @@ body {
 }
 
 .container {
-  background-color: rgba(0, 0, 0, 0.6);
+  background: url("../assets/loginUI.png") center/cover no-repeat;
   padding: 30px 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);
-  width: 320px;
+  border-radius: 50px;
+  width: 350px;
+  height: 350px;
   text-align: center;
+  animation: float 3s ease-in-out infinite;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically centers */
+  align-items: center; /* horizontally centers */
+  gap: 15px; /* space between elements */
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 h1 {
@@ -51,15 +67,14 @@ h1 {
 }
 
 .form-btn input {
-  width: 100%;
-  padding: 10px;
+  background-color: #4caf50;
   border: none;
-  background-color: #3cb371;
-  color: white;
-  font-size: 16px;
   border-radius: 8px;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.1em;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  transition: all 0.2s;
 }
 
 .form-btn input:hover {

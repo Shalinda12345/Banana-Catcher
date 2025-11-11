@@ -18,12 +18,28 @@ body {
 }
 
 .container {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 35px 45px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);
-  width: 360px;
+  background: url("../assets/loginUI.png") center/cover no-repeat;
+  padding: 30px 40px;
+  border-radius: 50px;
+  width: 350px;
+  height: 350px;
   text-align: center;
+  animation: float 3s ease-in-out infinite;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically centers */
+  align-items: center; /* horizontally centers */
+  /* gap: 5px; space between elements */
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 h1 {
@@ -52,16 +68,18 @@ h1 {
   background-color: #fff;
 }
 
-.form-group input[type="submit"] {
-  background-color: #3cb371;
-  color: #fff;
+.form-btn input {
+  background-color: #4caf50;
   border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.1em;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  transition: all 0.2s;
 }
 
-.form-group input[type="submit"]:hover {
+.form-btn input:hover {
   background-color: #2e8b57;
   transform: scale(1.05);
 }
@@ -85,20 +103,34 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Error & Success Messages Outside Container */
+.message-box {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  text-align: center;
+}
+
 .alert {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: left;
-  font-size: 14px;
+  display: inline-block;
+  margin: 10px auto;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(3px);
 }
 
 .alert-danger {
-  background-color: rgba(255, 0, 0, 0.2);
-  border-left: 4px solid red;
+  background-color: rgba(255, 0, 0, 0.25);
+  border: 2px solid #ff4d4d;
+  color: #fff;
 }
 
 .alert-success {
   background-color: rgba(0, 128, 0, 0.3);
-  border-left: 4px solid #00ff00;
+  border: 2px solid #00ff00;
+  color: #fff;
 }
