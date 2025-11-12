@@ -13,8 +13,8 @@ if(isset($_SESSION["user"])){
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="container">
-        <?php
+    <?php
+        $errors = [];
         // print_r($_POST);
         if(isset($_POST["login"])){
             $email = $_POST["email"];
@@ -30,13 +30,33 @@ if(isset($_SESSION["user"])){
                     header("Location: ../index.php");
                     die();
                 }else{
-                    echo "<div>Password does not match</div>";
+                    // echo "<div>Password does not match</div>";
+                    array_push($errors, "Password does not match");
                 }
             }else{
-                echo "<div>Email does not exists</div>";
+                // echo "<div>Email does not exists</div>";
+                array_push($errors, "Email does not exists");
             }
         }
         ?>
+
+        <!-- Error/Success Messages ABOVE the container -->
+        <div class="message-box">
+            <?php 
+            if(count($errors) > 0){
+                foreach($errors as $error){
+                    echo "<div class='alert alert-danger'>$error</div>";
+                }
+            }
+            if(!empty($success)){
+                echo "<div class='alert alert-success'>$success</div>";
+            }
+            ?>
+        </div>
+    <div class="container">
+        
+
+
         <form action="login.php" method="post">
             <div class="form-group">
                 <input type="email" placeholder="Enter Email: " name="email">
