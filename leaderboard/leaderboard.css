@@ -20,46 +20,115 @@ h1 {
 
 /* === Leaderboard Boxes === */
 .box {
-  background: linear-gradient(145deg, #1ddf8e, #11a86b);
-  color: #fff;
+  background: url("../assets/menuBg.png") center/cover no-repeat;
+  /* background-size: 10px; */
   padding: 20px;
-  border-radius: 15px;
-  margin: 20px auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
+  margin: auto;
+  height: 500px;
+  width: 450px;
+  /* max-width: 500px; */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
+}
+.topUserScore {
+  /* background: url("../assets/userBG.png") center no-repeat; */
+  /* background-size: contain; */
+
+  height: 100px;
+  width: 100%;
+
+  display: flex;
+  /* justify-content: space-between; spread items inside */
+  align-items: center; /* vertically center text */
+
+  padding: 0 20px; /* spacing inside */
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #e6c50d;
+}
+.name {
+  background: url("../assets/userBG.png") center/cover no-repeat;
+  height: 100px;
+  width: 60%;
+
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #e6c50d;
+
+  margin-bottom: 20px;
+}
+.score {
+  background: url("../assets/scoreBG.png") center no-repeat;
+  background-size: contain; /* show whole image */
+
+  height: 100px; /* smaller fixed size */
+  width: 100px; /* perfect small box */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #ffffff;
+
+  margin-left: 10px;
+  margin-top: -20px;
 }
 
-h2 {
-  color: #2c088f;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 8px 0;
-  margin-bottom: 15px;
+.userBox {
+  background: url("../assets/userStats.png") center no-repeat;
+  background-size: contain;
+  padding: 10px;
+  margin: auto;
+  width: 400px;
+  height: 180px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.userBox h2::before {
+  content: "🏆 ";
+  font-size: 1.2em;
+  color: #111fe9;
+  position: relative;
+  top: 8px; /* move down */
 }
 
-p {
+.userBox p::before {
+  content: "🏆 ";
+  font-size: 1.2em;
+  color: #059481;
+}
+.userBox:hover {
+  transform: translateY(-5px);
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
+  /* box-shadow: inset; */
+}
+
+/* p {
   font-size: 1.1em;
   color: #fff8e7;
   margin: 10px 0;
   letter-spacing: 0.5px;
-}
+} */
 
-p strong {
+/* p strong {
   color: #ffdd8a;
-}
+} */
 
 /* === Ranking Numbers === */
-.box p::before {
+/* .box p::before {
   content: "🏆 ";
   font-size: 1.2em;
   color: #ffd700;
-}
+} */
 
 /* === Button === */
 .returnBtn {

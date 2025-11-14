@@ -19,34 +19,42 @@ $top_query = $conn->query("SELECT username, MAX(score) AS highest_score FROM sco
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <link rel="stylesheet" href="leaderboard.css" />
 </head>
+
 <body>
     <h1>Leaderboard</h1>
-
-    <div class="box">
-        <h2>Your Stats</h2>
-        <p><strong>Username:</strong> <?= htmlspecialchars($username) ?></p>
-        <p><strong>Highest Score:</strong> <?= htmlspecialchars($user_score) ?></p>
-    </div>
 
     <div class="box">
         <h2>Top 3 Players</h2>
         <?php
         $rank = 1;
         while ($row = $top_query->fetch_assoc()) {
-            echo "<p>$rank. " . htmlspecialchars($row['username']) . 
-                 " — " . htmlspecialchars($row['highest_score']) . "</p>";
+            echo "
+<div class='topUserScore'>
+    <span class='name'>$rank. " . htmlspecialchars($row['username']) . "</span>
+    <span class='score'>" . htmlspecialchars($row['highest_score']) . "</span>
+</div>";
+
             $rank++;
         }
         ?>
     </div>
+
+    <div class="userBox">
+        <h2>Your Stats</h2>
+        <p class="userName"><strong>Username:</strong> <?= htmlspecialchars($username) ?></p>
+        <p class="userScore"><strong>Highest Score:</strong> <?= htmlspecialchars($user_score) ?></p>
+    </div>
+
     <div>
         <button class="returnBtn"><a href="../index.php">Return to Menu</a></button>
     </div>
 </body>
+
 </html>
