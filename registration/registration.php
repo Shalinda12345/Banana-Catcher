@@ -12,37 +12,6 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
-if (isset($_POST['submit'])) {
-    $mail = new PHPMailer(true);
-
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'heshankoralagamage2002@gmail.com';
-    $mail->Password = 'icdw hhch rjpm jfrr';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port = 465;
-
-    $mail->setFrom('heshankoralagamage2002@gmail.com');
-
-    $mail->addAddress($_POST['email']);
-
-    $mail->isHTML(true);
-
-    $mail->Subject = "OTP for Your Email Verification";
-    $mail->Body = $otp;
-
-    $mail->send();
-
-    echo "
-        <script>
-            alert('sent successfully');
-            document.location.href = '../index.php';
-        </script>
-    ";
-}
-
-$otp = rand(100000, 999999);
 
 ?>
 <!DOCTYPE html>
@@ -66,6 +35,7 @@ $otp = rand(100000, 999999);
         $email = $_POST['email'];
         $password = $_POST['password'];
         $passwordRepeat = $_POST['repeat_password'];
+        $otp = $_POST['otp'];
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -80,6 +50,17 @@ $otp = rand(100000, 999999);
         }
         if ($password !== $passwordRepeat) {
             array_push($errors, "Passwords do not match");
+        }
+        if (!isset($_SESSION['otp'])) {
+            $errors[] = "Please request an OTP first.";
+        }
+        if (isset($_SESSION['otp_time']) && (time() - $_SESSION['otp_time'] > 30)) {
+            unset($_SESSION['otp'], $_SESSION['otp_time']);
+            $errors[] = "OTP expired. Request a new one.";
+        } else {
+            if (!isset($_SESSION["otp"]) || $otp !== $_SESSION["otp"]) {
+                $errors[] = "OTP is wrong";
+            }
         }
 
         require_once "../database.php";
@@ -103,6 +84,45 @@ $otp = rand(100000, 999999);
             }
         }
     }
+    if (isset($_POST['otpBtn'])) {
+        $otpCreate = createOTP();
+        $_SESSION["otp"] = $otpCreate;
+        $_SESSION['otp_time'] = time();
+
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'heshankoralagamage2002@gmail.com';
+        $mail->Password = 'icdw hhch rjpm jfrr';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('heshankoralagamage2002@gmail.com');
+
+        $mail->addAddress($_POST['email']);
+
+        $mail->isHTML(true);
+
+        $mail->Subject = "OTP for Your Email Verification";
+        $mail->Body = "Your OTP is: <b>$otpCreate</b>";
+
+        $mail->send();
+
+        // echo "
+        //     <script>
+        //         alert('sent successfully');
+        //         alert('created OTP: $otpCreate, typed OTP: $otp');
+        //     </script>
+        // ";
+        // document.location.href = '../index.php';
+    }
+    function createOTP()
+    {
+        return (string)rand(100000, 999999);
+    }
+
     ?>
 
     <!-- Error/Success Messages ABOVE the container -->
@@ -133,6 +153,15 @@ $otp = rand(100000, 999999);
             <div class="form-group">
                 <input type="password" name="repeat_password" placeholder="Re-enter Password: ">
             </div>
+            <div class="otp">
+                <div class="form-group-otp">
+                    <input type="text" name="otp" placeholder="OTP">
+                </div>
+                <div class="form-btn-otp">
+                    <input type="submit" value="Send OTP" name="otpBtn">
+                </div>
+            </div>
+
             <div class="form-btn">
                 <input type="submit" value="Register" name="submit">
             </div>
