@@ -1,11 +1,8 @@
-/* Jungle-Themed Registration UI (Plain CSS) */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   height: 100vh;
   font-family: Arial, sans-serif;
@@ -16,7 +13,6 @@ body {
   align-items: center;
   color: #fff;
 }
-
 .container {
   background: url("../assets/loginUI.png") center/cover no-repeat;
   padding: 30px 40px;
@@ -31,7 +27,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 @keyframes float {
   0%,
   100% {
@@ -41,14 +36,11 @@ body {
     transform: translateY(-15px);
   }
 }
-
 /* ------------------ Form Inputs ------------------ */
-
 .form-group {
   margin-bottom: 15px;
   margin-left: -40px;
 }
-
 .form-group input {
   width: 110%; /* FIXED — no more layout expansion */
   padding: 15px;
@@ -60,14 +52,11 @@ body {
   font-size: 14px;
   margin-top: 15px;
 }
-
 .form-group input:focus {
   border-color: #9acd32;
   background-color: #fff;
 }
-
 /* ------------------ Register Button ------------------ */
-
 .form-btn input {
   background-color: #4caf50;
   border: none;
@@ -78,44 +67,35 @@ body {
   cursor: pointer;
   transition: transform 0.15s ease-out;
   margin-top: 15px;
-
   /* Prevent scaling from expanding container */
   transform: translateZ(0);
 }
-
 .form-btn input:hover {
   background-color: #2e8b57;
   transform: scale(1.05) translateZ(0);
 }
-
 .form-btn input:active {
   transform: scale(0.98) translateZ(0);
 }
-
 p {
   margin-top: 15px;
   font-size: 14px;
   color: #e0e0e0;
 }
-
 a {
   color: #ffd700;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
 /* ------------------ Messages ------------------ */
-
 .message-box {
   position: absolute;
   top: 30px;
   width: 100%;
   text-align: center;
 }
-
 .alert {
   display: inline-block;
   margin: 10px auto;
@@ -127,28 +107,23 @@ a:hover {
   text-align: center;
   backdrop-filter: blur(3px);
 }
-
 .alert-danger {
   background-color: rgba(255, 0, 0, 0.25);
   border: 2px solid #ff4d4d;
   color: #fff;
 }
-
 .alert-success {
   background-color: rgba(0, 128, 0, 0.3);
   border: 2px solid #00ff00;
   color: #fff;
 }
-
 /* ------------------ OTP ROW ------------------ */
-
 .otp {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
 }
-
 /* OTP Input */
 .form-group-otp input {
   width: 130px;
@@ -160,15 +135,12 @@ a:hover {
   color: #2e8b57;
   font-size: 14px;
   margin-top: 15px;
-
   flex-shrink: 0; /* Prevent shrinking/stretching */
 }
-
 .form-group-otp input:focus {
   border-color: #9acd32;
   background-color: #fff;
 }
-
 /* OTP Button */
 .form-btn-otp input {
   background-color: #4caf50;
@@ -180,29 +152,24 @@ a:hover {
   cursor: pointer;
   white-space: nowrap;
   margin-top: 15px;
-
   width: 120px; /* FIXED WIDTH */
   flex-shrink: 0;
   transform: translateZ(0); /* Prevent expanding */
   transition: transform 0.15s ease-out;
 }
-
 .form-btn-otp input:hover {
   background-color: #2e8b57;
   transform: scale(1.05) translateZ(0);
 }
-
 .form-btn-otp input:active {
   transform: scale(0.98) translateZ(0);
 }
-
 /* Disabled state (no expansion) */
 .form-btn-otp input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none !important;
 }
-
 /* Countdown — fixed width to avoid expanding the row */
 #countdown {
   width: 60px;

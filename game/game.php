@@ -5,8 +5,6 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 $username = $_SESSION["user"]; // The username from your DB or login
-// var_dump($_SESSION["user"]);
-// exit;
 ?>
 
 <!DOCTYPE html>

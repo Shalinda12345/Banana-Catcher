@@ -13,7 +13,6 @@ body {
   margin: 0;
   min-height: 100vh;
 }
-
 /* === Title === */
 h1 {
   font-size: 3em;
@@ -22,34 +21,23 @@ h1 {
   margin-bottom: 20px;
   letter-spacing: 2px;
 }
-
 /* === Leaderboard Boxes === */
 .box {
   background: url("../assets/menuBg.png") center/cover no-repeat;
-  /* background-size: 10px; */
   padding: 20px;
   margin: auto;
   height: 500px;
   width: 450px;
-  /* max-width: 500px; */
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
-
 .box:hover {
   transform: translateY(-5px);
-  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
 }
 .topUserScore {
-  /* background: url("../assets/userBG.png") center no-repeat; */
-  /* background-size: contain; */
-
   height: 100px;
   width: 100%;
-
   display: flex;
-  /* justify-content: space-between; spread items inside */
   align-items: center; /* vertically center text */
-
   padding: 0 20px; /* spacing inside */
   margin-bottom: 20px;
   font-size: 1.2em;
@@ -59,36 +47,28 @@ h1 {
   background: url("../assets/userBG.png") center/cover no-repeat;
   height: 100px;
   width: 60%;
-
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-
   font-size: 1.2em;
   font-weight: 600;
   color: #e6c50d;
-
   margin-bottom: 20px;
 }
 .score {
   background: url("../assets/scoreBG.png") center no-repeat;
   background-size: contain; /* show whole image */
-
   height: 100px; /* smaller fixed size */
   width: 100px; /* perfect small box */
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 1.1em;
   font-weight: 600;
   color: #ffffff;
-
   margin-left: 10px;
   margin-top: -20px;
 }
-
 .userBox {
   background: url("../assets/userStats.png") center no-repeat;
   background-size: contain;
@@ -105,7 +85,6 @@ h1 {
   position: relative;
   top: 8px; /* move down */
 }
-
 .userBox p::before {
   content: "🏆 ";
   font-size: 1.2em;
@@ -113,28 +92,7 @@ h1 {
 }
 .userBox:hover {
   transform: translateY(-5px);
-  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
-  /* box-shadow: inset; */
 }
-
-/* p {
-  font-size: 1.1em;
-  color: #fff8e7;
-  margin: 10px 0;
-  letter-spacing: 0.5px;
-} */
-
-/* p strong {
-  color: #ffdd8a;
-} */
-
-/* === Ranking Numbers === */
-/* .box p::before {
-  content: "🏆 ";
-  font-size: 1.2em;
-  color: #ffd700;
-} */
-
 /* === Responsive === */
 @media (max-width: 600px) {
   .box {
@@ -145,34 +103,25 @@ h1 {
     font-size: 2.2em;
   }
 }
-
 /* === Button === */
 .returnMenu {
   position: absolute;
   top: 10px;
   left: 10px;
-
   background-image: url("../game/assets/hammer.png");
   background-size: 35px 35px; /* Adjust icon size if needed */
   background-repeat: no-repeat;
   background-position: 12px center;
-
   padding: 14px 22px 14px 46px; /* Larger button + space for icon */
   font-size: 18px; /* Larger text */
-
   background-color: #24f18b;
   color: #fff;
   border: none;
   border-radius: 60px;
   cursor: pointer;
 }
-
 .returnMenu:hover {
   background-color: #24f18b;
   background-image: none; /* Remove hammer icon on hover */
   padding-left: 22px; /* Adjust padding since icon disappears */
-}
-
-.returnMenu:hover ~ .cursor {
-  display: none;
 }
