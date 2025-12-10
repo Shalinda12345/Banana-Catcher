@@ -175,3 +175,33 @@ body {
     transform: scale(1);
   }
 }
+
+.returnMenu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  background-image: url("assets/brokenHammer.png");
+  background-size: 35px 35px; /* Adjust icon size if needed */
+  background-repeat: no-repeat;
+  background-position: 12px center;
+
+  padding: 14px 22px 14px 46px; /* Larger button + space for icon */
+  font-size: 18px; /* Larger text */
+
+  background-color: #24f18b;
+  color: #fff;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.returnMenu:hover {
+  background-color: #24f18b;
+  background-image: none; /* Remove hammer icon on hover */
+  padding-left: 22px; /* Adjust padding since icon disappears */
+}
+
+.returnMenu:hover ~ .cursor {
+  display: none;
+}

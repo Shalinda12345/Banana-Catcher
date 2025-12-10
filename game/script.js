@@ -1,6 +1,7 @@
 const cursor = document.querySelector('.cursor');
 const holes = [...document.querySelectorAll('.hole')];
 const scoreE1 = document.querySelector('.score span');
+let returnMenu = document.querySelector(".returnMenu");
 let score = 0;
 
 let plantActive = false;
@@ -173,7 +174,7 @@ function gameEnded() {
     overlay.id = 'gameover-overlay';
     overlay.innerHTML = `
         <div class="gameover-container">
-            <h2>💀 Game Over!</h2>
+            <h2>🔨 Game Over!</h2>
             <p id="playerInfo">Player: <strong>${window.username || 'Guest'}</strong></p>
             <p id="finalScore">Your Score: <strong>${score}</strong></p>
             <! -- <button id="exitButton">Exit to Menu</button> -->
@@ -193,7 +194,9 @@ function gameEnded() {
 }
 
 
-
+returnMenu.onclick = function () {
+    window.location.href = "../index.php";  // ← change this
+  };
 
 // Cursor (hammer) movement
 window.addEventListener('mousemove', e => {
