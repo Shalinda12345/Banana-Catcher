@@ -21,6 +21,7 @@ $username = $_SESSION["user"]; // The username from your DB or login
 
 <body>
     <h1>Whack a Mole</h1>
+    <button class="returnMenu">🔙</button>
     <h2 class="score">Score: <span>0</span></h2>
     <!-- 3 x 3 board-->
     <div class="board">
