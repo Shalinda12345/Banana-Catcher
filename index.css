@@ -1,11 +1,8 @@
-/* Jungle-Themed Home Screen (Plain CSS) */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   height: 100vh;
   width: 100%;
@@ -21,10 +18,8 @@ body {
   color: #fff;
   overflow: hidden;
 }
-
 .jungle-container {
   background: url("assets/menuBg.png") center/cover no-repeat;
-  /* padding: 50px; */
   padding-top: 100px;
   border-radius: 20px;
   text-align: center;
@@ -32,7 +27,6 @@ body {
   height: 800px;
   animation: fadeIn 1s ease-in;
 }
-
 .title {
   font-size: 24px;
   color: #ffd700;
@@ -40,13 +34,11 @@ body {
   margin-bottom: 30px;
   letter-spacing: 1px;
 }
-
 .menu {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 .btn {
   background: url("assets/button.png") center/contain no-repeat; /* full image visible */
   border: none;
@@ -66,17 +58,14 @@ body {
   /* box-shadow: 0 0 10px rgba(46, 139, 87, 0.6); */
   transition: transform 0.2s, box-shadow 0.3s;
 }
-
 .btn:hover {
   /* background-color: #2e8b57; */
   transform: scale(1.05);
   /* box-shadow: 0 0 15px rgba(144, 238, 144, 0.8); */
 }
-
 .btn:active {
   transform: scale(0.98);
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;

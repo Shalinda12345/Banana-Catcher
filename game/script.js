@@ -1,14 +1,16 @@
+// Referenced:
+// https://youtu.be/b20YueeXwZg?si=53ecvCUC_jIK0IwO
+// https://youtu.be/ej8SatOj3V4?si=4_FNDPKXQtPpJZ0y
+
 const cursor = document.querySelector('.cursor');
 const holes = [...document.querySelectorAll('.hole')];
 const scoreE1 = document.querySelector('.score span');
 let returnMenu = document.querySelector(".returnMenu");
 let score = 0;
-
 let plantActive = false;
 let moleActive = false;
 let gamePaused = false;
 let gameOver = false;
-
 const sound = new Audio("assets/smash.mp3");
 
 function run() {
@@ -25,7 +27,7 @@ function setHole() {
     }
 
     if (Math.random() < 0.5) {
-        let availableHoles = holes.filter(h => !h.querySelector('img'));
+        let availableHoles = holes.filter(h => h.childElementCount === 0);
         if (availableHoles.length === 0) {
             setTimeout(setHole, 500);
             return;
@@ -98,11 +100,11 @@ function setPlant(plantHole) {
         if (plantHole.contains(plant)) plantHole.removeChild(plant);
         plantActive = false;
 
-        showBananaChallenge(); // 🔥 Trigger the Banana Puzzle
+        showBananaChallenge(); // Trigger the Banana Puzzle
     });
 }
 
-// 🧠 Banana Challenge (with real verification)
+// Banana Challenge (with real verification)
 function showBananaChallenge() {
     gamePaused = true;
 
@@ -123,12 +125,15 @@ function showBananaChallenge() {
     const msg = overlay.querySelector('#bananaMessage');
     const btn = overlay.querySelector('#submitAnswer');
 
+    btn.disabled = true;
+
     // Fetch puzzle image from Banana API
     fetch('https://marcconrad.com/uob/banana/api.php')
-        .then(res => res.json())
+        .then(res => res.json().catch(() => { throw new Error("Bad JSON"); }))
         .then(data => {
             bananaImg.src = data.question;
-            bananaImg.dataset.expected = data.solution; // store solution temporarily
+            bananaImg.dataset.expected = String(data.solution); // store solution temporarily
+            btn.disabled = false;
         })
         .catch(err => {
             msg.textContent = "⚠️ Failed to load puzzle.";
@@ -136,7 +141,7 @@ function showBananaChallenge() {
         });
 
     btn.addEventListener('click', () => {
-    const userAnswer = overlay.querySelector('#bananaAnswer').value.trim();
+    const userAnswer = overlay.querySelector('#bananaAnswer').value.trim().toString();
     const correctAnswer = bananaImg.dataset.expected;
 
     if (!userAnswer) {
@@ -164,6 +169,8 @@ function showBananaChallenge() {
 }
 
 function gameEnded() {
+    if (document.getElementById('gameover-overlay')) return;
+
     gamePaused = true;
     gameOver = true;
 
@@ -177,7 +184,7 @@ function gameEnded() {
             <h2>🔨 Game Over!</h2>
             <p id="playerInfo">Player: <strong>${window.username || 'Guest'}</strong></p>
             <p id="finalScore">Your Score: <strong>${score}</strong></p>
-            <! -- <button id="exitButton">Exit to Menu</button> -->
+            <!-- <button id="exitButton">Exit to Menu</button> -->
             <!-- Form to submit score -->
             <form action="save_score.php" method="post">
                 <input type="hidden" name="score" value="${score}">
@@ -188,21 +195,22 @@ function gameEnded() {
     `;
     document.body.appendChild(overlay);
 
-    overlay.querySelector('#exitButton').addEventListener('click', () => {
-        window.location.href = '../index.php';
-    });
+    
 }
 
 
-returnMenu.onclick = function () {
-    window.location.href = "../index.php";  // ← change this
-  };
+if (returnMenu) {
+    returnMenu.onclick = () => window.location.href = "../index.php";
+}
+
 
 // Cursor (hammer) movement
-window.addEventListener('mousemove', e => {
-    cursor.style.top = e.pageY + 'px';
-    cursor.style.left = e.pageX + 'px';
-});
+if (cursor) {
+    window.addEventListener("mousemove", e => {
+        cursor.style.top = e.pageY + 'px';
+        cursor.style.left = e.pageX + 'px';
+    });
+}
 window.addEventListener('mousedown', () => {
     cursor.classList.add('active');
 });
